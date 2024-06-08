@@ -52,7 +52,6 @@ def run_algo():
     algo.run(csv_file, time_steps)
 
 
-
 st.header("Particle Filter")
 
 num_of_particles = st.select_slider(
