@@ -469,8 +469,7 @@ class ExperimentPerturb(Perturb):
 
         for particle in particleArray:
             for name in var_names:      
-                particle.param[name] = np.exp(ctx.rng.normal(np.log(particle.param[name]),np.sqrt(self.hyperparameters["sigma"])))
-
+                particle.param[name] = ctx.rng.normal(particle.param[name],self.hyperparameters["sigma"])
 
         return particleArray
 

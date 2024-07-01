@@ -4,7 +4,7 @@ import pandas as pd
 import copy
 
 def visualize_particles(num_of_particles, resampling_indices):
-    plt.figure(figsize=(8, 5), dpi=600)
+    plt.figure(figsize=(8, 5), dpi=1000)
 
     def unique_ranks(arr):
         # Sort the array and get indices

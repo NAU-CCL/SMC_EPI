@@ -39,6 +39,22 @@ def likelihood_poisson(observation:NDArray[np.int_],particle_observation:NDArray
 
     return poisson.logpmf(observation,particle_observation)
 
+def log_likelihood_poisson(observation:NDArray[np.int_],particle_observation:NDArray[np.int_])->NDArray[np.float_]:
+    """Calculates the log-probability of the poisson random variable using the particle observation.
+    
+        Args: 
+        observation: A numpy array of real observations at the current time point, count data. 
+        particle_observation: A numpy array of observations generated from a given particle at the current time point. 
+        var: Deprecated, left it here just in case. 
+
+        Returns: 
+            Array of probabilities corresponding to the given particle. 
+
+    """
+
+    return poisson.logpmf(observation,particle_observation)
+
+
 def log_likelihood_NB(observation:NDArray[np.int_],particle_observation:NDArray[np.int_],R:float)->int: 
 
     """Calculates the log-probability of the negative binomial random variable using a fixed value of R and the particle observation, calculates the NB pmf by hand for testing.

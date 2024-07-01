@@ -57,15 +57,15 @@ class ExperimentAlgo(Algorithm):
 
         data1 = pd.read_csv(data_path).to_numpy()
 
-        data1 = data1[150:,:]
-
         '''Arrays to hold all the output data'''
         r, k, state, mu = ([] for i in range(4))
 
         for t in range(runtime): 
 
             #one step propagation 
-            self.particles = self.integrator.propagate(self.particles,self.ctx)
+
+            if(t != 0):
+                self.particles = self.integrator.propagate(self.particles,self.ctx)
 
             obv = data1[t, :]
 
@@ -85,13 +85,13 @@ class ExperimentAlgo(Algorithm):
                 state_unavg.append(particle.state)
                 mu_unavg.append(particle.param["mu"])
 
-            r.append(np.average(np.array(r_unavg), weights=(self.ctx.weights)))
+            r.append(np.average(np.array(r_unavg),axis=0, weights=(self.ctx.weights)))
             k.append(np.average(np.array(k_unavg), axis=0 , weights=(self.ctx.weights)))
             state.append(np.average(np.array(state_unavg), axis=0, weights=(self.ctx.weights)))
             mu.append(np.average(np.array(mu_unavg), weights=(self.ctx.weights)))
 
             #Debugging print
-            print("r:",np.average(np.array(r_unavg), weights=(self.ctx.weights)))
+            print("r:",np.average(np.array(r_unavg), axis = 0,weights=(self.ctx.weights)))
             print("k:",np.average(np.array(k_unavg), weights=(self.ctx.weights),axis=0))
             print("mu:",np.average(np.array(mu_unavg), weights=(self.ctx.weights),axis=0))
         

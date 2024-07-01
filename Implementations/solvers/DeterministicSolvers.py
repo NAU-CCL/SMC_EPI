@@ -650,8 +650,8 @@ class LSODASolverExperimentLogistic(Integrator):
                 sol =  solve_ivp(fun=lambda t,y: RHS_Logistic(t,y,par,j),  
                                 t_span=(0.0,1.0),
                                 y0=state,
-                                t_eval=t_span,
-                                method='RK45',rtol=1e-3,atol=1e-3)
+                                t_eval=t_span)
+
 
 
                 particleArray[i].state[j] = sol.y[0,1]
